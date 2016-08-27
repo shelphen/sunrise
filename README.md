@@ -1,2 +1,2 @@
 # sunrise
-CMS based on Laravel 5.2 and Angular 2
+CMS based on Laravel >= 5.2 and Angular >=2
