@@ -34,6 +34,9 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'api'], function () {
 
+        Route::get('getUser/{id}', ['as' => 'user.get', 'uses' => 'UserController@get']);
         Route::post('putUser', ['as' => 'user.put', 'uses' => 'UserController@put']);
+        Route::post('delUser', ['as' => 'user.delete', 'uses' => 'UserController@delete']);
+
 
 });
