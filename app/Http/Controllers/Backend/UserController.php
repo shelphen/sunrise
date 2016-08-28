@@ -3,20 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\User;
-
-use Illuminate\Contracts\Support;
-
 use App\Http\Requests\Request as Request;
-
+use App\Models\User;
+use Log;
 
 class UserController extends Controller
 {
-
-
-
-
 
     /**
      * Display a listing of the resource.
@@ -27,8 +19,18 @@ class UserController extends Controller
     public function get($id)
     {
 
+        try {
             $user = User::find($id);
-            return $user;
+
+            return $user ? $user : json_encode(['status' => 'error'], true);
+
+        } catch (\Exception $e) {
+
+           Log::error($e);
+
+        }
+
+
     }
 
     /**
@@ -39,10 +41,15 @@ class UserController extends Controller
      */
     public function put(Request $request)
     {
-        
-        User::create($request->request);
-        var_dump($request);
-        return 1;
+        try {
+            User::create($request->request);
+            return json_encode(['status' => 'success'], true);
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
+
+        return json_encode(['status' => 'error'], true);
+
     }
 
 
