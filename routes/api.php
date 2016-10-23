@@ -22,5 +22,6 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'cors', 'api'], function(){
     Route::resource('authenticate', 'Auth\AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'Auth\AuthenticateController@authenticate');
+   // Route::post('auth/refresh-token', ['middleware' => 'jwt.refresh', function() {}]);
 
 });
